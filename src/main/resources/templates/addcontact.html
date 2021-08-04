@@ -29,37 +29,35 @@
 				</nav>		
 		</div>
 		<br>
-<div class="container w-75">
-<table class="table">
-  <thead class="table-success">
-    <tr>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Email</th>
-      <th scope="col">Update  |  Delete</th>
+<div class="container w-75" th:if=${Cust}>
 
-    </tr>
-  </thead>
+
+
+
+<form th:object="${Cust}" th:action="@{/updated}" method="POST">
+
+<table class="table">
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td >First Name <input type="hidden" name="id" th:value="${Cust.id}"></td>
+      <td ><input type="text" name="fname" th:value="${Cust.fname}" required></td>
     </tr>
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+      <td >Last Name</td>
+      <td ><input type="text" name="lname" th:value="${Cust.lname}" required></td>
     </tr>
     <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+      <td >Email </td>
+      <td ><input type="email" name="email" th:value="${Cust.email}" required></td>
     </tr>
+    <tr>
+      <td>
+		      <Button type="submit" class="btn btn-warning btn-sm "><i class="fa fa-edit">UPDATE</i> </Button>
+	</td>
+      </tr>
   </tbody>
-</table>
+  </table>
+</form>
 
 </div>
 

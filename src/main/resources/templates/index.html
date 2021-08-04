@@ -46,7 +46,12 @@
       <span th:text="${c.fname}"></span></th>
       <td><span th:text="${c.lname}"></span></td>
       <td><span th:text="${c.email}"></span></td>
-      <td><a href="" >Update </a> |<a href="">Delete</a> </td>
+      <td>
+			      <form  th:action="@{'/update/'+${c.id}}" class="text-center" method="get"> 
+			      <Button type="submit" class="btn btn-warning btn-sm "><i class="fa fa-edit">EDIT</i> </Button></form></td>
+		<td>
+			 		<Button th:onclick="|contactdelete(${c.id})|" class="btn btn-danger btn-sm "><i class="fas fa-trash-alt">DEL</i></Button>
+		</td>
     </tr>
   </tbody>
 </table>
