@@ -42,7 +42,7 @@ public class MyController {
 		return "index";
 	}
 	
-	@DeleteMapping("/d/{id}")
+	@RequestMapping("/d/{id}")
 	public String contactdelete(@PathVariable("id") int id)
 	{
 		this.contactService.deleteContact(id);
@@ -54,29 +54,31 @@ public class MyController {
 	{
 		Cust cust = userRepository.getById(id);
 		m.addAttribute("Cust",cust);
-		System.out.println("Update " + cust);
+		m.addAttribute("form1","/updated");
+		m.addAttribute("rtype","Upadate Customer");
 		return "addcontact";
 	}
 	
 	@PostMapping("/updated")
-	public String updateCustDB(@Valid @ModelAttribute("Cust") Cust cust,
-			BindingResult result,Principal principal, HttpSession session) {
-	try {
-	//	String name = principal.getName();
-		System.out.println("NAME====>"+name);
-		System.out.println("Updated====>"+cust);
+	public String updateCustDB(@Valid @ModelAttribute("Cust") Cust cust) {
 		this.contactService.updateContact(cust, cust.getId());
-//		this.contactService.updateContact(cust, cust.getId());
-	return "redirect:/";
-	} catch(Exception e)
-	{
-		System.out.println(result.getAllErrors());
-		e.printStackTrace();
+		return "redirect:/";
+
+	}
+	
+	@RequestMapping("/addCust")
+	public String addContact(Model m){
+		m.addAttribute("Cust", new Cust());
+		m.addAttribute("form1","/CustAdded");
+		m.addAttribute("rtype","ADD New Customer");
+		return "addcontact";
 		
+	}
+
+	@PostMapping("/CustAdded")
+	public String custAdded(@Valid @ModelAttribute("Cust") Cust cust) {		
+		this.contactService.addContact(cust);
 		return "redirect:/";
 	}
 	
-	
-	
-	}
 }

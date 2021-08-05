@@ -34,9 +34,9 @@
 
 
 
-<form th:object="${Cust}" th:action="@{/updated}" method="POST">
+<form th:object="${Cust}" th:action="${form1}" method="POST">
 
-<table class="table">
+<table class="table w-50">
   <tbody>
     <tr>
       <td >First Name <input type="hidden" name="id" th:value="${Cust.id}"></td>
@@ -51,8 +51,8 @@
       <td ><input type="email" name="email" th:value="${Cust.email}" required></td>
     </tr>
     <tr>
-      <td>
-		      <Button type="submit" class="btn btn-warning btn-sm "><i class="fa fa-edit">UPDATE</i> </Button>
+      <td colspan="2">
+		      <Button type="submit" class="btn btn-warning btn-sm md-block "><span th:text="${rtype}"> </span> </Button>
 	</td>
       </tr>
   </tbody>
